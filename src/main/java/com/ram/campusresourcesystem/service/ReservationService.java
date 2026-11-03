@@ -22,7 +22,7 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-
+    // Creates a reservation after checking time conflicts
     public Reservation addReservation(Reservation reservation) {
 
         boolean conflict =
