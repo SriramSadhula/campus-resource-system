@@ -28,4 +28,38 @@ public class ResourceController {
     public Resource addResource(@RequestBody Resource resource) {
         return resourceService.addResource(resource);
     }
+
+    @PutMapping("/{id}")
+    public Resource updateResource(@PathVariable Long id,@RequestBody Resource resource)
+    {
+        return resourceService.updateResource(id,resource);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteResource(@PathVariable  Long id)
+    {
+        resourceService.deleteResource(id);
+    }
+
+    @GetMapping("/type/{type}")
+    public List<Resource> getResourcesByType(@PathVariable String type)
+    {
+        return resourceService.getResourcesByType(type);
+    }
+
+    @GetMapping("/location/{location}")
+    public List<Resource> getResourcesByLocation(@PathVariable String location)
+    {
+        return resourceService.getResourcesByLocation(location);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<Resource> getResourcesByStatus(@PathVariable String status) {
+        return resourceService.getResourcesByStatus(status);
+    }
+
+    @GetMapping("/{id}/availability")
+    public boolean checkAvailability(@PathVariable Long id) {
+        return resourceService.isResourceAvailable(id);
+    }
 }
