@@ -30,7 +30,10 @@ public class Resource {
     )
     @NotBlank(message = "Resource status is required")
     private String status;
-
+    
+   
+    private Integer quantity;
+    
     public Resource() {
     }
 
@@ -89,5 +92,13 @@ public class Resource {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
