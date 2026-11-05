@@ -2,6 +2,7 @@ package com.ram.campusresourcesystem.controller;
 
 import com.ram.campusresourcesystem.entity.Resource;
 import com.ram.campusresourcesystem.service.ResourceService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +26,12 @@ public class ResourceController {
     }
 
     @PostMapping
-    public Resource addResource(@RequestBody Resource resource) {
+    public Resource addResource(@Valid @RequestBody Resource resource) {
         return resourceService.addResource(resource);
     }
 
     @PutMapping("/{id}")
-    public Resource updateResource(@PathVariable Long id,@RequestBody Resource resource)
+    public Resource updateResource(@PathVariable Long id,@Valid @RequestBody Resource resource)
     {
         return resourceService.updateResource(id,resource);
     }

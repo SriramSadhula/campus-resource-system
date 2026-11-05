@@ -1,6 +1,10 @@
-package com.ram.campusresourcesystem.entity;
-import jakarta.persistence.*;
 
+package com.ram.campusresourcesystem.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Pattern;
 @Entity
 @Table(name = "resources")
 public class Resource {
@@ -9,10 +13,22 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Resource name is required")
     private String name;
+
+    @NotBlank(message = "Resource type is required")
     private String type;
+
+    @NotBlank(message = "Resource location is required")
     private String location;
+
+    @Positive(message = "Capacity must be greater than zero")
     private Integer capacity;
+    @Pattern(
+            regexp = "(?i)Available|Under Maintenance|Unavailable",
+            message = "Status must be Available, Under Maintenance, or Unavailable"
+    )
+    @NotBlank(message = "Resource status is required")
     private String status;
 
     public Resource() {
