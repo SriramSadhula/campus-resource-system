@@ -1,9 +1,11 @@
+
 package com.ram.campusresourcesystem.service;
 
 import com.ram.campusresourcesystem.entity.Resource;
 import com.ram.campusresourcesystem.repo.ResourceRepository;
 import org.springframework.stereotype.Service;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,7 +27,13 @@ public class ResourceService {
     }
 
     public Resource updateResource(Long id, Resource resource) {
-     Resource existingResource=resourceRepository.findById(id).orElseThrow();
+
+        Resource existingResource = resourceRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Resource not found with id: " + id
+                ));
+
         existingResource.setName(resource.getName());
         existingResource.setType(resource.getType());
         existingResource.setLocation(resource.getLocation());
@@ -36,8 +44,15 @@ public class ResourceService {
     }
 
     //DELETING THE RESOURCE
-
     public void deleteResource(Long id) {
+
+        if (!resourceRepository.existsById(id)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "Resource not found with id: " + id
+            );
+        }
+
         resourceRepository.deleteById(id);
     }
     public List<Resource> getResourcesByType(String type) {
@@ -54,8 +69,12 @@ public class ResourceService {
     }
     //Resource Available or not checking using by id
     public boolean isResourceAvailable(Long id) {
+
         Resource resource = resourceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Resource not found"));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Resource not found with id: " + id
+                ));
 
         return resource.getStatus().equalsIgnoreCase("Available");
     }

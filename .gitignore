@@ -40,3 +40,6 @@ build/
 ### Local configuration and secrets ###
 application.properties
 .env
+node_modules/
+dist/
+.env
