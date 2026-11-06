@@ -1,0 +1,326 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-05T21:46:09.433+05:30  INFO 20980 --- [campus-resource-system] [           main] c.r.c.CampusResourceSystemApplication    : Starting CampusResourceSystemApplication v0.0.1-SNAPSHOT using Java 21.0.5 with PID 20980 (C:\Users\nithi\OneDrive\Desktop\project\mini-project\campus-resource-system\target\campus-resource-system-0.0.1-SNAPSHOT.jar started by nithi in C:\Users\nithi)
+2026-11-05T21:46:09.444+05:30  INFO 20980 --- [campus-resource-system] [           main] c.r.c.CampusResourceSystemApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-11-05T21:46:11.902+05:30  INFO 20980 --- [campus-resource-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-05T21:46:12.058+05:30  INFO 20980 --- [campus-resource-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 3 JPA repository interfaces.
+2026-11-05T21:46:14.702+05:30  INFO 20980 --- [campus-resource-system] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-11-05T21:46:14.778+05:30  INFO 20980 --- [campus-resource-system] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-05T21:46:14.778+05:30  INFO 20980 --- [campus-resource-system] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-11-05T21:46:14.888+05:30  INFO 20980 --- [campus-resource-system] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 5245 ms
+2026-11-05T21:46:15.516+05:30  INFO 20980 --- [campus-resource-system] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-05T21:46:15.704+05:30  INFO 20980 --- [campus-resource-system] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-11-05T21:46:17.428+05:30  INFO 20980 --- [campus-resource-system] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-05T21:46:17.534+05:30  INFO 20980 --- [campus-resource-system] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-05T21:46:18.094+05:30  INFO 20980 --- [campus-resource-system] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66a472b9
+2026-11-05T21:46:18.098+05:30  INFO 20980 --- [campus-resource-system] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-05T21:46:18.283+05:30  WARN 20980 --- [campus-resource-system] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-05T21:46:18.329+05:30  INFO 20980 --- [campus-resource-system] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/campus_resource_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.4
+	Default catalog/schema: campus_resource_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-05T21:46:20.358+05:30  INFO 20980 --- [campus-resource-system] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    create table client (
+        id bigint not null auto_increment,
+        name varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table reservations (
+        id bigint not null auto_increment,
+        client_id integer not null,
+        end_time time(0),
+        reservation_date date,
+        resource_id bigint,
+        start_time time(0),
+        status varchar(255),
+        user_name varchar(255),
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table resources (
+        id bigint not null auto_increment,
+        capacity integer,
+        location varchar(255) not null,
+        name varchar(255) not null,
+        quantity integer,
+        status varchar(255) not null,
+        type varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB
+2026-11-05T21:46:20.573+05:30  INFO 20980 --- [campus-resource-system] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-05T21:46:20.860+05:30  INFO 20980 --- [campus-resource-system] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-05T21:46:23.021+05:30  INFO 20980 --- [campus-resource-system] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-11-05T21:46:23.060+05:30  INFO 20980 --- [campus-resource-system] [           main] c.r.c.CampusResourceSystemApplication    : Started CampusResourceSystemApplication in 15.061 seconds (process running for 17.064)
+successfully started
+2026-11-05T21:46:28.837+05:30  INFO 20980 --- [campus-resource-system] [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-05T21:46:28.838+05:30  INFO 20980 --- [campus-resource-system] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-05T21:46:28.845+05:30  INFO 20980 --- [campus-resource-system] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+Hibernate: 
+    insert 
+    into
+        resources
+        (capacity, location, name, quantity, status, type) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0
+Hibernate: 
+    insert 
+    into
+        client
+        (name) 
+    values
+        (?)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    insert 
+    into
+        reservations
+        (client_id, end_time, reservation_date, resource_id, start_time, status, user_name) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.client_id,
+        r1_0.end_time,
+        r1_0.reservation_date,
+        r1_0.resource_id,
+        r1_0.start_time,
+        r1_0.status,
+        r1_0.user_name 
+    from
+        reservations r1_0
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.client_id,
+        r1_0.end_time,
+        r1_0.reservation_date,
+        r1_0.resource_id,
+        r1_0.start_time,
+        r1_0.status,
+        r1_0.user_name 
+    from
+        reservations r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    update
+        resources 
+    set
+        capacity=?,
+        location=?,
+        name=?,
+        quantity=?,
+        status=?,
+        type=? 
+    where
+        id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.client_id,
+        r1_0.end_time,
+        r1_0.reservation_date,
+        r1_0.resource_id,
+        r1_0.start_time,
+        r1_0.status,
+        r1_0.user_name 
+    from
+        reservations r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    update
+        reservations 
+    set
+        client_id=?,
+        end_time=?,
+        reservation_date=?,
+        resource_id=?,
+        start_time=?,
+        status=?,
+        user_name=? 
+    where
+        id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.client_id,
+        r1_0.end_time,
+        r1_0.reservation_date,
+        r1_0.resource_id,
+        r1_0.start_time,
+        r1_0.status,
+        r1_0.user_name 
+    from
+        reservations r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    update
+        resources 
+    set
+        capacity=?,
+        location=?,
+        name=?,
+        quantity=?,
+        status=?,
+        type=? 
+    where
+        id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.client_id,
+        r1_0.end_time,
+        r1_0.reservation_date,
+        r1_0.resource_id,
+        r1_0.start_time,
+        r1_0.status,
+        r1_0.user_name 
+    from
+        reservations r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    update
+        reservations 
+    set
+        client_id=?,
+        end_time=?,
+        reservation_date=?,
+        resource_id=?,
+        start_time=?,
+        status=?,
+        user_name=? 
+    where
+        id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.capacity,
+        r1_0.location,
+        r1_0.name,
+        r1_0.quantity,
+        r1_0.status,
+        r1_0.type 
+    from
+        resources r1_0
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.client_id,
+        r1_0.end_time,
+        r1_0.reservation_date,
+        r1_0.resource_id,
+        r1_0.start_time,
+        r1_0.status,
+        r1_0.user_name 
+    from
+        reservations r1_0 
+    where
+        r1_0.client_id=?

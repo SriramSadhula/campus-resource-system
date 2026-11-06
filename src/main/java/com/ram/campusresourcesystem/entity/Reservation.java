@@ -15,6 +15,15 @@ public class Reservation {
 
     private Long resourceId;
     private String userName;
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    private int clientId;
 
     private LocalDate reservationDate;
     private LocalTime startTime;
